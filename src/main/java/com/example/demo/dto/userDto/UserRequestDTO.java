@@ -1,4 +1,4 @@
-package com.example.demo.dto.usuarioDto;
+package com.example.demo.dto.userDto;
 
 import lombok.Getter;
 import lombok.Setter;

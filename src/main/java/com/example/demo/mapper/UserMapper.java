@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dto.usuarioDto.UserRequestDTO;
-import com.example.demo.dto.usuarioDto.UserResponseDTO;
+import com.example.demo.dto.userDto.UserRequestDTO;
+import com.example.demo.dto.userDto.UserResponseDTO;
 import com.example.demo.models.User;
 
 public class UserMapper {

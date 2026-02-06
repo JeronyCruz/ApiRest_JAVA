@@ -1,4 +1,4 @@
-package com.example.demo.dto.usuarioDto;
+package com.example.demo.dto.userDto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
