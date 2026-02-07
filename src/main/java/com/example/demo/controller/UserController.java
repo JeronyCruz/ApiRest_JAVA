@@ -1,9 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.common.Response;
 import com.example.demo.dto.userDto.UserRequestDTO;
 import com.example.demo.dto.userDto.UserResponseDTO;
 import com.example.demo.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +24,15 @@ public class UserController {
     }
 
     @PostMapping
-    public UserResponseDTO postUser(@RequestBody UserRequestDTO dto){
-        return userService.insertUser(dto);
+    public ResponseEntity<Response<UserResponseDTO>> postUser(@Valid @RequestBody UserRequestDTO dto){
+
+        UserResponseDTO user = userService.insertUser(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Response<>(
+                    true,
+                "Usuario creado correctamente",
+                         user
+                ));
+
     }
 
     @GetMapping
@@ -35,14 +46,26 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserResponseDTO updateUser (@PathVariable int id,
+    public ResponseEntity<Response<UserResponseDTO>> updateUser (@Valid @PathVariable int id,
                                        @RequestBody UserRequestDTO dto) {
-        return userService.updateUser(id,dto);
-
+        UserResponseDTO user =userService.updateUser(id,dto);
+        return ResponseEntity.ok(
+                new Response<>(
+                        true,
+                        "Usuario actualizado correctamente",
+                        user
+                ));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable int id){
+    public ResponseEntity<Response<Void>> deleteUser(@PathVariable int id){
         userService.deleteUser(id);
+
+        return ResponseEntity.ok(
+                new Response<>(
+                        true,
+                        "Usuario eliminado correctamente",
+                        null
+                ));
     }
 }
