@@ -2,6 +2,7 @@ package com.example.demo.services.impl;
 
 import com.example.demo.dto.userDto.UserRequestDTO;
 import com.example.demo.dto.userDto.UserResponseDTO;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.models.User;
 import com.example.demo.repository.UserRepository;
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO getUserById(int id) {
         User user = usuarioRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Usuario no encontrado con id: " + id)
+                        new ResourceNotFoundException("Usuario no encontrado con id: " + id)
                 );
 
         return UserMapper.toDTO(user);
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO updateUser(int id, UserRequestDTO dto) {
         User user = usuarioRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Usuario no encontrado con id: " + id)
+                        new ResourceNotFoundException("Usuario no encontrado con id: " + id)
                 );
 
         // actualizar campos
