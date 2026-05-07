@@ -45,6 +45,11 @@ public class TechnicianTypeController {
         return technicianTypeService.listTechnicianType();
     }
 
+    @GetMapping("/{id}")
+    public TechnicianTypeResponseDTO getTechnicianTypeById(@PathVariable UUID id){
+        return technicianTypeService.getTechnicianTypeById(id);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Response<TechnicianTypeResponseDTO>> updateTechnicianType (@Valid @PathVariable UUID id,
                                                                              @RequestBody TechnicianTypeRequestDTO dto) {

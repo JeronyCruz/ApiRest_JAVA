@@ -63,7 +63,7 @@ public class TechnicianTypeServiceImpl implements TechnicianTypeService {
     @Override
     public void deleteTechnicianType(UUID id) {
         if (!technicianTypeRepository.existsById(id)) {
-            throw new RuntimeException("Tipo Tecnico no encontrado con id: " + id);
+            throw new ResourceNotFoundException("Tipo Tecnico no encontrado con id: " + id);
         }
         technicianTypeRepository.deleteById(id);
     }

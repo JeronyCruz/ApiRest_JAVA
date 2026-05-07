@@ -80,7 +80,7 @@ public class TechnicianServiceImpl implements TechnicianService {
     @Override
     public void deleteTechnician(UUID id) {
         if (!technicianRepository.existsById(id)) {
-            throw new RuntimeException("Tecnico no encontrado con id: " + id);
+            throw new ResourceNotFoundException("Tecnico no encontrado con id: " + id);
         }
         technicianTypeRepository.deleteById(id);
     }

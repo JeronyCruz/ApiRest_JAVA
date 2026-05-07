@@ -17,6 +17,7 @@ public class User {
     private String nombre;
     @Column(nullable = false, unique = true)
     private String email;
+    private String password;
     private int edad;
 
 }
